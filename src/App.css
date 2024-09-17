@@ -1,7 +1,8 @@
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #1a1a1a; /* Dark background */
+  color: #fff; /* White text */
   margin: 0;
   padding: 20px;
   display: flex;
@@ -17,15 +18,15 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #333; /* Darker background for the container */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
 }
 
 /* Header */
 h1 {
   text-align: center;
-  color: #333;
+  color: #fff; /* White color for the header */
   margin-bottom: 20px;
 }
 
@@ -37,13 +38,17 @@ h1 {
 
 .nav-links a {
   text-decoration: none;
-  color: #007bff;
+  color: #fff;
   font-weight: bold;
+  background-color: #000;
+  padding: 8px 16px;
+  border-radius: 4px;
   margin-right: 10px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-links a:hover {
-  text-decoration: underline;
+  background-color: #555;
 }
 
 /* Search Bar and Suggestions */
@@ -60,23 +65,29 @@ h1 {
   max-width: 600px; /* Limit the width on larger screens */
   padding: 10px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
+  background-color: #1a1a1a; /* Dark background for input */
+  color: #fff;
   margin-bottom: 10px; /* Space between input and button */
   box-sizing: border-box; /* Include padding in width */
 }
 
+.search-bar input::placeholder {
+  color: #ccc;
+}
+
 .search-bar button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #000;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
 .search-bar button:hover {
-  background-color: #0056b3;
+  background-color: #555;
 }
 
 .suggestions {
@@ -86,8 +97,8 @@ h1 {
   transform: translateX(-50%);
   width: 100%;
   max-width: 600px;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #333;
+  border: 1px solid #fff;
   border-radius: 4px;
   max-height: 150px;
   overflow-y: auto;
@@ -97,50 +108,71 @@ h1 {
 .suggestion-item {
   padding: 10px;
   cursor: pointer;
+  color: #fff;
 }
 
 .suggestion-item:hover {
-  background-color: #f0f0f0;
+  background-color: #555;
 }
 
 /* Anime List */
 .anime-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
   gap: 20px;
   width: 100%;
 }
 
 .anime-item {
+  display: flex; /* Align items in a row */
+  flex-direction: row;
   background-color: #000;
-  color: white;
+  color: #fff;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-  position: relative;
+  text-align: left; /* Align text to the left */
 }
 
 .anime-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .anime-image-wrapper {
-  width: 100%;
-  height: 250px;
+  flex: 0 0 100px; /* Set a fixed width for images */
+  height: 100px;
   overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-right: 15px;
 }
 
 .anime-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the container */
+  object-fit: cover; /* Ensure the image covers the container without stretching */
   border-radius: 8px;
+}
+
+.anime-item-content {
+  flex: 1; /* Allow content to take remaining space */
+  display: flex;
+  flex-direction: column; /* Stack title and paragraph vertically */
+  justify-content: space-between; /* Space elements inside */
+}
+
+.anime-item h2 {
+  font-size: 16px;
+  margin-bottom: 10px; /* Add margin to create space between title and paragraph */
+}
+
+.anime-item p {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0; /* Reset margin for the paragraph */
+  text-align: right; /* Align paragraph to the right */
 }
 
 /* Pagination Controls */
@@ -155,7 +187,7 @@ h1 {
   margin: 0 10px;
   padding: 5px 10px;
   border: none;
-  background-color: #007bff;
+  background-color: #000;
   color: white;
   cursor: pointer;
   border-radius: 4px;
@@ -163,32 +195,37 @@ h1 {
 }
 
 .pagination button:hover {
-  background-color: #0056b3;
+  background-color: #555;
 }
 
 .pagination button:disabled {
-  background-color: #ccc;
+  background-color: #333;
   cursor: not-allowed;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) { /* Tablet */
   .anime-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    flex-direction: column;
   }
 
-  .search-bar input {
-    width: 90%; /* Reduce width on smaller screens */
+  .anime-item {
+    flex-direction: row; /* Keep items in a row format */
   }
 
-  .search-bar button {
-    width: 90%; /* Match the width of the input */
+  .search-bar input, .search-bar button {
+    width: 100%; /* Full width on smaller screens */
+    max-width: none;
   }
 }
 
 @media (max-width: 480px) { /* Mobile */
   .anime-list {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    flex-direction: column;
+  }
+
+  .anime-item {
+    flex-direction: row; /* Keep items in a row format */
   }
 
   .anime-item h2 {
@@ -198,5 +235,105 @@ h1 {
   .search-bar input, .search-bar button {
     width: 100%; /* Full width on mobile */
     max-width: none; /* Remove max-width */
+  }
+}
+/* Anime Details Page */
+.anime-details {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  padding: 20px;
+  background-color: #1a1a1a; /* Dark background */
+  color: #fff; /* White text */
+}
+
+.anime-details-content {
+  background-color: #000; /* Black background for the content box */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content inside */
+}
+
+.anime-details-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.anime-details-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.anime-details-content p {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* Buttons Container */
+.anime-details-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 15px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.anime-details-content button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+}
+
+.anime-details-content button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Back Button */
+.anime-details-back-button {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.anime-details-back-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) { /* Tablet */
+  .anime-details-content {
+    max-width: 90%; /* Ensure card does not stretch too much on tablets */
+  }
+}
+
+@media (max-width: 480px) { /* Mobile */
+  .anime-details-content {
+    max-width: 95%; /* Ensure card does not stretch too much on mobile */
+  }
+
+  .anime-details-buttons {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Reduce space between buttons */
   }
 }
