@@ -46,25 +46,27 @@ function AnimeDetails({ addToFavorites, removeFromFavorites, favorites }) {
 
   return (
     <div className="anime-details">
-      <button onClick={() => navigate(-1)}>Back</button>
       {anime ? (
-        <div>
+        <div className="anime-details-content">
           <h2>{anime.title.romaji || anime.title.english}</h2>
           <img src={anime.coverImage.large} alt={anime.title.romaji || anime.title.english} />
           <p>{anime.description || 'No description available.'}</p>
-          {isFavorite ? (
-            <button
-              onClick={() => removeFromFavorites(anime.id)}
-            >
-              Remove from Favorites
-            </button>
-          ) : (
-            <button
-              onClick={() => addToFavorites(anime)}
-            >
-              Add to Favorites
-            </button>
-          )}
+          <div className="anime-details-buttons">
+            <button className="anime-details-back-button" onClick={() => navigate(-1)}>Back</button>
+            {isFavorite ? (
+              <button
+                onClick={() => removeFromFavorites(anime.id)}
+              >
+                Remove from Favorites
+              </button>
+            ) : (
+              <button
+                onClick={() => addToFavorites(anime)}
+              >
+                Add to Favorites
+              </button>
+            )}
+          </div>
         </div>
       ) : (
         <p>Loading...</p>
