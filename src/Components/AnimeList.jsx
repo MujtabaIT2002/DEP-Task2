@@ -17,10 +17,16 @@ const AnimeList = ({ animeList, onAnimeSelect }) => {
             transition={{ duration: 0.3 }}
           >
             <div className="anime-image-wrapper">
-              <img src={anime.coverImage.large} alt={anime.title.romaji || anime.title.english} className="anime-image" />
+              <img 
+                src={anime.coverImage.large} 
+                alt={anime.title.romaji || anime.title.english} 
+                className="anime-image" 
+              />
             </div>
-            <h2>{anime.title.romaji || anime.title.english}</h2>
-            <p>{anime.description ? anime.description.substring(0, 100) + '...' : 'No description available.'}</p>
+            <div className="anime-item-content"> {/* New container for title and paragraph */}
+              <h2>{anime.title.romaji || anime.title.english}</h2>
+              <p>{anime.description ? anime.description.substring(0, 100) + '...' : 'No description available.'}</p>
+            </div>
           </motion.div>
         ))
       ) : (
